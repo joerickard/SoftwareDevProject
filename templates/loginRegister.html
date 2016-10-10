@@ -1,0 +1,24 @@
+<!-- Will allow for login/ signup -->
+
+<!doctype html>
+<html lang = "en">
+<head>
+	<title> New User </title>
+	<link href="../static/loginRegister.css" rel="stylesheet">
+	<!-- <script src="../static/js/hash.js"></script> -->
+</head>
+
+<body>
+	<div>Login or Create Account</div>
+		<form class="form-signup">
+			<label for="inputName" class="form-signup-input">Name</label>
+	        <input type="name" name="inputName" id="_inputName" class="form-control" placeholder="Name" required autofocus>
+
+	        <label for="inputPassword" class="form-signup-input">Name</label>
+	        <input type="password" name="inputpassword" id="_inputPassword" class="form-control" placeholder="Password" required autofocus>
+
+	        <button id="buttonSubmit" class="form-signup-buttonComplete" type="button" action="/trapdoor" method="Post" onclick="disableButton(this)"">Submit
+		        <!-- <script type="text/javascript" src=/static/js/hash.js></script> -->
+	        </button>
+		</form>
+</body>
