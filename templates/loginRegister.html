@@ -4,21 +4,69 @@
 <html lang = "en">
 <head>
 	<title> New User </title>
+	<meta name="referrer" content="origin">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="../static/loginRegister.css" rel="stylesheet">
+	<link rel="shortcut icon" href="../static/favicon.ico">
 	<!-- <script src="../static/js/hash.js"></script> -->
 </head>
-
 <body>
-	<div>Login or Create Account</div>
-		<form class="form-signup">
-			<label for="inputName" class="form-signup-input">Name</label>
-	        <input type="name" name="inputName" id="_inputName" class="form-control" placeholder="Name" required autofocus>
-
-	        <label for="inputPassword" class="form-signup-input">Name</label>
-	        <input type="password" name="inputpassword" id="_inputPassword" class="form-control" placeholder="Password" required autofocus>
-
-	        <button id="buttonSubmit" class="form-signup-buttonComplete" type="button" action="/trapdoor" method="Post" onclick="disableButton(this)"">Submit
-		        <!-- <script type="text/javascript" src=/static/js/hash.js></script> -->
-	        </button>
-		</form>
+	Hello Sailor
+	<br/>
+	<br/>
+	<b>Login
+	</b>
+	<br>
+	<br>
+	<form method="post" action="login">
+		<input type="hidden" name="goto" value="news?p=4">
+		<input type="hidden" name="how" value="up">
+		<input type="hidden" name="id" value="12660253">
+		<table border="0">
+			<tr>
+				<td>username:
+				</td>
+				<td>
+					<input type="text" name="acct" size="20" autocorrect="off" spellcheck="false" autocapitalize="off" autofocus="true">
+				</td>
+			</tr>
+			<tr>
+				<td>password:
+				</td>
+				<td>
+					<input type="password" name="pw" size="20">
+				</td>
+			</tr>
+		</table>
+		<br>
+		<input type="submit" value="login">
+	</form>
+	<a href="forgot?id=">Forgot your password?</a>
+	<br/>
+	<br/>
+	<b>Create Account</b><br><br>
+	<form method="post" action="register">
+		<input type="hidden" name="goto" value="news?p=4">
+		<input type="hidden" name="how" value="up">
+		<input type="hidden" name="id" value="12660253">
+		<input type="hidden" name="creating" value="t">
+		<table border="0">
+			<tr>
+				<td>username:
+				</td>
+				<td>
+					<input type="text" name="acct" size="20" autocorrect="off" spellcheck="false" autocapitalize="off">
+				</td>
+			</tr>
+			<tr>
+				<td>password:
+				</td>
+				<td>
+					<input type="password" name="pw" size="20">
+				</td>
+			</tr>
+		</table>
+		<br>
+		<input type="submit" value="create account">
+	</form>
 </body>
