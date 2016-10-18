@@ -42,4 +42,5 @@ We will use Agile as our development methodology.  We will have many small rele
 - Slack
 - Google docs
 
-
+## Dev Tools:
+- I (Joe) set up a basic frameork with Python3 and Flask. If these are installed on your machine, you should be able to run app.py with python3, and then open 0.0.0.0:5000 on a web browser to see the local instance. Let me know if you run into issues.
