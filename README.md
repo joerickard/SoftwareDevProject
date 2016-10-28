@@ -42,5 +42,13 @@ We will use Agile as our development methodology.  We will have many small rele
 - Slack
 - Google docs
 
-## Dev Tools:
-- I (Joe) set up a basic frameork with Python3 and Flask. If these are installed on your machine, you should be able to run app.py with python3, and then open 0.0.0.0:5000 on a web browser to see the local instance. Let me know if you run into issues.
+## Local Install Instructions:
+- I (Joe) set up a basic frameork with Python3 and Flask. 
+
+- 1) Install Python v3
+- 2) Follow instructions on here: http://flask.pocoo.org/docs/0.11/installation/
+- 3) Activate your virtual environment by running the script file ("venv/scripts/activate") placed within the 'venv' folder you generated through following the above instructions.
+- 4) With your virtual environment activated (will show "(venv)" to the left side of your username in the shell), run "pip install flask-mysql". Then after the installation is complete, run "python app.py" and navigate to "localhost:5000" in a web browser.
+
+
+If these are installed on your machine, you should be able to run app.py with python3, and then open 0.0.0.0:5000 on a web browser to see the local instance. Let me know if you run into issues.
