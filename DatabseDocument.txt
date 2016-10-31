@@ -1,0 +1,9 @@
+We chose to use MySQL
+
+We have three tables: tbl_user, tbl_notes, and tbl_events
+
+tbl_user stores data required for user login, registration, and identification.  This will get as big as the number of users we have.
+
+tbl_notes stores all the notes that users have created.  This table relates to the tbl_user.  So one record in tbl_usr relates to zero or more records in tbl_notes
+
+tbl_events relates to tbl_user in the same way that tbl_notes relates to tbl_user.  The only difference is that tbl_events holds attributes for needed data to store events (e.g. event_name, event_time, etc.) instead of attributes relating to storing notes. 
