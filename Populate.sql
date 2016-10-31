@@ -6,18 +6,18 @@ VALUES
     ('warhammer227@gmail.com', 'myName', 'b219b78937b277a65ba8b40f8178d3a81ec32151'),
     ('anotherEmail@gmail.com', 'generic_username', '5233d72bb14c6245b2d4ff6cb371efa3be85a8d3');
 
-INSERT INTO tbl_notes (note_name, note_content, note_creator)
+INSERT INTO tbl_notes (note_name, note_created, note_content, note_creator)
 VALUES
-    ('Shopping list', 'Bread, milk, eggs', '1'),
-    ('HW', 'Math, Enligh', '3'),
-    ('Cool links', 'http://google.com', '3'),
-    ('Favorite Books', 'The Martian', '2'),
-    ('Cool videos', 'http://youtube.com/', '4');
+    ('Shopping list', CURRENT_TIMESTAMP, 'Bread, milk, eggs', '1'),
+    ('HW', CURRENT_TIMESTAMP, 'Math, Enligh', '3'),
+    ('Cool links', CURRENT_TIMESTAMP, 'http://google.com', '3'),
+    ('Favorite Books', CURRENT_TIMESTAMP, 'The Martian', '2'),
+    ('Cool videos', CURRENT_TIMESTAMP, 'http://youtube.com/', '4');
 
-INSERT INTO tbl_events (events_name, event_content, event_creator)
+INSERT INTO tbl_events (events_name, event_created, event_content, event_creator)
 VALUES
-    ('Johns Birthday Party', 'My birthday party is gonna be soon!', '1'),
-    ('Sunset walk on the beach', 'Walking on the beach on tuesday', '5').
-    ('Big shopping trip', 'I have lots to buy tomorrow', '3'),
-    ('Coffee Date', 'Gonna grab some coffe later today', '4'),
-    ('Hiking', 'Hiking up the flatirons on saturday', '2');
+    ('Johns Birthday Party', CURRENT_TIMESTAMP, 'My birthday party is gonna be soon!', '1'),
+    ('Sunset walk on the beach', CURRENT_TIMESTAMP, 'Walking on the beach on tuesday', '5'),
+    ('Big shopping trip', CURRENT_TIMESTAMP, 'I have lots to buy tomorrow', '3'),
+    ('Coffee Date', CURRENT_TIMESTAMP, 'Gonna grab some coffe later today', '4'),
+    ('Hiking', CURRENT_TIMESTAMP, 'Hiking up the flatirons on saturday', '2');
