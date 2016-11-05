@@ -23,7 +23,7 @@ mysql.init_app(app)
 
 @app.route("/")
 def hello():
-    return "Welcome to Python Flask App!"
+    return "Welcome to the Python Flask App!"
 
 # User Login
 @app.route("/Authenticate")
