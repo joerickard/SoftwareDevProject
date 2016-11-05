@@ -1,5 +1,6 @@
 #Make sure your SQL service is started before executing
 
+import subprocess
 from flask import Flask, request #Request allows passing in URL args
 from flaskext.mysql import MySQL
 from flask_restful import Resource, Api, reqparse #Request parsing
@@ -85,6 +86,9 @@ class CreateUser(Resource):
 
 api.add_resource(CreateUser, '/CreateUser')
 
+@app.route("/Gitupdate")
+def Gitupdate():
+    return subprocess.Popen("./PullAndRestart.sh", shell=True, stdout=subprocess.PIPE).stdout.read() 
 
 # Goes at the bottom
 if __name__ == "__main__":
