@@ -49,8 +49,8 @@ We will use Agile as our development methodology.  We will have many small rele
 - 2) Follow instructions on here: http://flask.pocoo.org/docs/0.11/installation/
 - 3) Activate your virtual environment by running the script file ("venv/scripts/activate") placed within the 'venv' folder you generated through following the above instructions.
 - 4) With your virtual environment activated (will show "(venv)" to the left side of your username in the shell), run "pip install flask-mysql" and "pip install flask-restful". 
-- 5) Open new shell, Log into mysql ("mysql -u root -p"), and create a database called "TimelessTest". Then run "source db.sql;"
-- 6) Open 'app_RESTful.py' and add your actual mysql password to line 15.
+- 5) Open new shell, Log into mysql ("mysql -u root -p"), and create a database called "Timeless". Then run "source db.sql;"
+- 6) Open 'app_RESTful.py' and add your actual mysql password to line 15. (Will find way around having to do this)
 - 7) Run "python app_RESTful.py" and navigate to "localhost:5000" in a web browser. NOTE: This contains user and login functions with no front end interface (e.g. text boxes) hooked up yet, but will successfully post to your local DB
 
 

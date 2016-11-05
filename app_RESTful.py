@@ -1,6 +1,5 @@
 #Make sure your SQL service is started before executing
 
-
 from flask import Flask, request #Request allows passing in URL args
 from flaskext.mysql import MySQL
 from flask_restful import Resource, Api, reqparse #Request parsing
@@ -12,8 +11,11 @@ api = Api(app)
 
 # Config for the SQL server, DON'T push your password to public git
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'PASSWORD HERE'
-app.config['MYSQL_DATABASE_DB'] = 'TimelessTest'
+## Get password from HTTP server, dont change this
+file = open('/home/www/private/sql_password.txt', 'r')
+app.config['MYSQL_DATABASE_PASSWORD'] = file.read(17)
+file.close()
+app.config['MYSQL_DATABASE_DB'] = 'Timeless'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 

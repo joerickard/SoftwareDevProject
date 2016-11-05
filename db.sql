@@ -1,13 +1,13 @@
--- CREATE DATABASE TimelessTest;
+-- CREATE DATABASE Timeless;
 
-CREATE TABLE `TimelessTest`.`tbl_user` (
+CREATE TABLE `Timeless`.`tbl_user` (
   `user_uid` BIGINT UNIQUE AUTO_INCREMENT,
   `user_email` VARCHAR(45) NULL,
   `user_username` VARCHAR(45) NULL,
   `user_password` VARCHAR(45) NULL,
   PRIMARY KEY (`user_uid`));
 
-CREATE TABLE `TimelessTest`.`tbl_notes` (
+CREATE TABLE `Timeless`.`tbl_notes` (
   `note_nid` BIGINT UNIQUE AUTO_INCREMENT,
   `note_name` VARCHAR(45) NULL,
   `note_created` DATETIME,
@@ -15,7 +15,7 @@ CREATE TABLE `TimelessTest`.`tbl_notes` (
   `note_creator` BIGINT,
   PRIMARY KEY (`note_nid`));
 
-CREATE TABLE `TimelessTest`.`tbl_events` (
+CREATE TABLE `Timeless`.`tbl_events` (
   `events_eid` BIGINT UNIQUE AUTO_INCREMENT,
   `events_name` VARCHAR(45) NULL,
   `event_created` DATETIME,
@@ -25,12 +25,12 @@ CREATE TABLE `TimelessTest`.`tbl_events` (
 
 -- Make a 'create user' procedure
 
-USE `TimelessTest`;
+USE `Timeless`;
 
 DROP procedure IF EXISTS `spCreateUser`;
 
 DELIMITER $$
-USE `TimelessTest`$$
+USE `Timeless`$$
 CREATE PROCEDURE `spCreateUser` (
 IN p_user_email varchar(45),
 IN p_user_password varchar(45)
