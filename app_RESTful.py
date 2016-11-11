@@ -23,7 +23,7 @@ mysql.init_app(app)
 
 @app.route("/")
 def hello():
-    return "Welcome to the Timeless Flask App!"
+    return "Welcome to the sublime Timeless Flask App!"
 
 # User Login
 @app.route("/Authenticate")
@@ -86,7 +86,7 @@ class CreateUser(Resource):
 
 api.add_resource(CreateUser, '/CreateUser')
 
-@app.route("/Gitupdate")
+@app.route("/Gitupdate", methods=['GET', 'POST'])
 def Gitupdate():
     return subprocess.Popen("./PullAndRestart.sh", shell=True, stdout=subprocess.PIPE).stdout.read() 
 
