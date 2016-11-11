@@ -1,7 +1,7 @@
 #Make sure your SQL service is started before executing
 
 import subprocess
-from flask import Flask, request #Request allows passing in URL args
+from flask import Flask, request, redirect, url_for, current_app
 from flaskext.mysql import MySQL
 from flask_restful import Resource, Api, reqparse #Request parsing
 
@@ -20,10 +20,13 @@ app.config['MYSQL_DATABASE_DB'] = 'Timeless'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
-
+# Homepage
 @app.route("/")
-def hello():
-    return "Welcome to the sublime Timeless Flask App!"
+def home():
+    return "Welcome to our nice Timeless Flask app!"
+#EXPERIMENTS:
+    #return redirect(url_for('static', filename='index.html'))
+    #return current_app.send_static_file('index.html')
 
 # User Login
 @app.route("/Authenticate")
@@ -60,7 +63,7 @@ class CreateUser(Resource):
             #return {'email': args['email'], 'password': args['password']}
 
             if _userEmail is None or _userPassword is None:
-		return {'error': "Username or password field blank"}
+		return {'error': "'email' or 'password' field blank"}
 
             # Todo: Hash password and sanitize input, check for valid email address form
 
