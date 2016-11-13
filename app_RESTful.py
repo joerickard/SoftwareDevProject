@@ -1,7 +1,7 @@
 #Make sure your SQL service is started before executing
 
 import subprocess
-from flask import Flask, request, redirect, url_for, current_app
+from flask import Flask, request, render_template
 from flaskext.mysql import MySQL
 from flask_restful import Resource, Api, reqparse #Request parsing
 
@@ -13,37 +13,36 @@ api = Api(app)
 # Config for the SQL server, DON'T push your password to public git
 app.config['MYSQL_DATABASE_USER'] = 'root'
 ## Get password from HTTP server, dont change this
-file = open('/home/www/private/sql_password.txt', 'r')
-app.config['MYSQL_DATABASE_PASSWORD'] = file.read(17)
-file.close()
+#file = open('/home/www/private/sql_password.txt', 'r')
+#app.config['MYSQL_DATABASE_PASSWORD'] = file.read(17)
+#file.close()
 app.config['MYSQL_DATABASE_DB'] = 'Timeless'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
 # Homepage
 @app.route("/")
-def home():
-    return "Welcome to our nice Timeless Flask app!"
-#EXPERIMENTS:
-    #return redirect(url_for('static', filename='index.html'))
-    #return current_app.send_static_file('index.html')
+@app.route("/<name>")
+def home(name=None):
+    return render_template('login.html', name=name) 
 
 # User Login
 @app.route("/Authenticate")
 def Authenticate():
-    username = request.args.get('Username')
-    if not username:
-	return "No username given"
-    password = request.args.get('Password')
+    email = request.args.get('email')
+    if not email:
+	return "No email given"
+    password = request.args.get('password')
     if not password:
 	return "No password given"
 
     # Todo: Hash password input
     cursor = mysql.connect().cursor()
-    cursor.execute("SELECT * from tbl_user where user_email='" + username + "' and user_password='" + password + "'")
+    # Warning: SQL injection exploits galore!
+    cursor.execute("SELECT * from tbl_user where user_email='" + email + "' and user_password='" + password + "'")
     data = cursor.fetchone()
     if data is None:
-     return "Username or Password is wrong"
+     return "Email or Password is wrong"
     else:
      return "Logged in successfully"
 
