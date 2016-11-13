@@ -35,7 +35,7 @@ USE `Timeless`$$
 CREATE PROCEDURE `spCreateUser` (
 IN p_user_email varchar(45),
 IN p_user_password varchar(45),
-IN p_user_name varchar(45)
+IN p_user_username varchar(45)
 )
 BEGIN
 
@@ -49,13 +49,13 @@ insert into tbl_user
 (
     user_email,
     user_password,
-    user_name
+    user_username
 )
 values
 (
     p_user_email,
     p_user_password,
-    p_user_name
+    p_user_username
 );
 
 END IF;
