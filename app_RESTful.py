@@ -1,5 +1,8 @@
 #Make sure your SQL service is started before executing
 
+import logging # For sending debug to browser console
+import sys
+
 import subprocess
 from flask import Flask, request, render_template
 from flaskext.mysql import MySQL
@@ -13,9 +16,14 @@ api = Api(app)
 # Config for the SQL server, DON'T push your password to public git
 app.config['MYSQL_DATABASE_USER'] = 'root'
 ## Get password from HTTP server, dont change this
-file = open('/home/www/private/sql_password.txt', 'r')
-app.config['MYSQL_DATABASE_PASSWORD'] = file.read(17)
-file.close()
+try:
+    file = open('/home/www/private/sql_password.txt', 'r')
+    try:
+        app.config['MYSQL_DATABASE_PASSWORD'] = file.read(17)
+    finally:
+        file.close()
+except IOError:
+    file = None
 app.config['MYSQL_DATABASE_DB'] = 'Timeless'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
@@ -24,6 +32,14 @@ mysql.init_app(app)
 @app.route("/")
 @app.route("/<name>")
 def home(name=None):
+    ##DEBUG info - check database login success
+    if file == None:
+        print >> sys.stderr, "Password NOT loaded"
+    else:
+        #app.logger.warning('DB login success')
+        print >> sys.stderr, "DB login success"
+    ##END DEBUG info
+
     return render_template('login.html', name=name) 
 
 # User Login
@@ -87,6 +103,10 @@ class CreateUser(Resource):
 
 
 api.add_resource(CreateUser, '/CreateUser')
+
+@app.route("/register")
+def Register():
+    return render_template('register.html')
 
 @app.route("/Gitupdate", methods=['GET', 'POST'])
 def Gitupdate():
