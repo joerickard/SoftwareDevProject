@@ -1,16 +1,16 @@
 <!DOCTYPE html>
     <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../static/bootstrap.min.css" />
         <link rel="stylesheet" href="../static/style.css" />
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <title>Timeless: The app for your life</title>
+        <script src="../static/js/jquery-3.1.1.min.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
     </head>
 
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            		<form role="form">
+            		<form role="form" action="http://timeless.dynu.com/CreateUser" method="GET">
             			<h2>Welcome To Timeless!</h2>
             			<hr class="colorgraph">
             			<div class="row">
@@ -28,24 +28,46 @@
             			<div class="row">
             				<div class="col-xs-12 col-sm-6 col-md-6">
             					<div class="form-group">
-            						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+            						<input type="password" id="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
             					</div>
             				</div>
             				<div class="col-xs-12 col-sm-6 col-md-6">
             					<div class="form-group">
-            						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+            						<input type="password" id="password_confirmation" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
             					</div>
             				</div>
             			</div>
 
             			<hr class="colorgraph">
+                        <span id="#passError"></span>
             			<div class="row">
-            				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-            				<div class="col-xs-12 col-md-6"><a href="#" class="btn btn-success btn-block btn-lg">Sign In</a></div>
+            				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" id="registerButton" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+            				<div class="col-xs-12 col-md-6"><a href="login.html" class="btn btn-success btn-block btn-lg">Sign In</a></div>
             			</div>
             		</form>
             	</div>
             </div>
         </div>
     </body>
+
+<script>
+    /*$('#registerButton').click(function() {
+        var email = $('#email').val();
+        var pass1 = $('#password').val();
+        var pass2 = $('#password_confirmation').val();
+        var url = 'http://timeless.dynu.com/CreateUser?';
+
+        // password validation
+        if (pass1 === pass2) {
+            url += 'email=' + email + '&password=' + pass1;
+            $.post(url, function(data) {
+                console.log(data);
+            });
+        }
+        else {
+            $('#passError').html('Passwords do not match');
+        }
+    });*/
+
+</script>
 </html>
