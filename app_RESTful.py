@@ -1,5 +1,8 @@
 #Make sure your SQL service is started before executing
 
+import logging # For sending debug to browser console
+import sys
+
 import subprocess
 from flask import Flask, request, render_template
 from flaskext.mysql import MySQL
@@ -13,9 +16,14 @@ api = Api(app)
 # Config for the SQL server, DON'T push your password to public git
 app.config['MYSQL_DATABASE_USER'] = 'root'
 ## Get password from HTTP server, dont change this
-file = open('/home/www/private/sql_password.txt', 'r')
-app.config['MYSQL_DATABASE_PASSWORD'] = file.read(17)
-file.close()
+try:
+    file = open('/home/www/private/sql_password.txt', 'r')
+    try:
+        app.config['MYSQL_DATABASE_PASSWORD'] = file.read(17)
+    finally:
+        file.close()
+except IOError:
+    file = None
 app.config['MYSQL_DATABASE_DB'] = 'Timeless'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
@@ -24,6 +32,14 @@ mysql.init_app(app)
 @app.route("/")
 @app.route("/<name>")
 def home(name=None):
+    ##DEBUG info - check database login success
+    if file == None:
+        print >> sys.stderr, "Password NOT loaded"
+    else:
+        #app.logger.warning('DB login success')
+        print >> sys.stderr, "DB login success"
+    ##END DEBUG info
+
     return render_template('login.html', name=name) 
 
 # User Login
@@ -54,15 +70,17 @@ class CreateUser(Resource):
             parser = reqparse.RequestParser()
             parser.add_argument('email', type=str, help='Email address to create user')
             parser.add_argument('password', type=str, help='Password to create user')
+            parser.add_argument('first_name', type=str, help='User first name')
             args = parser.parse_args()
             _userEmail = args['email']
             _userPassword = args['password']
+            _userName = args['first_name']
             
             ####DEBUG
             #return {'email': args['email'], 'password': args['password']}
 
-            if _userEmail is None or _userPassword is None:
-		return {'error': "'email' or 'password' field blank"}
+            if _userEmail is None or _userPassword is None or _userName is None:
+		return {'error': "'email','password', or 'first_name' field blank"}
 
             # Todo: Hash password and sanitize input, check for valid email address form
 
@@ -70,7 +88,7 @@ class CreateUser(Resource):
 	    # Run the mysql procedure to create a user, assuming mysql has been set up using db.sql
 	    conn = mysql.connect()
 	    cursor = conn.cursor()
-	    cursor.callproc('spCreateUser',(_userEmail,_userPassword))
+	    cursor.callproc('spCreateUser',(_userEmail,_userPassword,_userName))
 	    data = cursor.fetchall()
 
 	    # Check for success
@@ -87,6 +105,10 @@ class CreateUser(Resource):
 
 
 api.add_resource(CreateUser, '/CreateUser')
+
+@app.route("/register")
+def Register():
+    return render_template('register.html')
 
 @app.route("/Gitupdate", methods=['GET', 'POST'])
 def Gitupdate():

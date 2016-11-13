@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href="../static/bootstrap.min.css" />
+        <link rel="stylesheet" href="../static/style.css" />
+        <script src="../static/js/jquery-3.1.1.min.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
+        <title>Timeless: The app for your life</title>
+    </head>
+
+
+    <body>
+
+
+        <!-- Put page html here -->
+ <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    		<form role="form" action="http://timeless.dynu.com/Authenticate" method="POST">
+    			<h2>Your Notes</h2>
+    			<hr class="colorgraph">
+                <table class="table table-striped">
+                    <tr>
+                        <td>Check out this video</td>
+                        <td>Here is more details of the note</td>
+                    </tr>
+                </table>
+    			<div class="form-group">
+    				<input type="text" novalidate="novalidate" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+    			</div>
+                <div class=""
+    			<div class="row">
+    				<div class="col-xs-12 col-sm-12 col-md-12">
+    					<div class="form-group">
+    						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+    					</div>
+    				</div>
+    			</div>
+
+    			<hr class="colorgraph">
+    			<div class="row">
+    				<div class="col-xs-12 col-md-12"><input type="submit" value="Login" href="#" class="btn btn-success btn-block btn-lg"></div>
+    			</div>
+    		</form>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    $('#signinButton').click(function() {
+        var email = $('#email').val();
+        var pass = $('#password').val();
+        var url = 'http://timeless.dynu.com/Authenticate?email=' + email + '&password=' + pass;
+
+        $.get(url, function(data) {
+            console.log(data);
+        });
+    });
+</script>
+</html>
