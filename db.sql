@@ -1,5 +1,5 @@
 -- CREATE DATABASE Timeless;
-
+/*
 CREATE TABLE `Timeless`.`tbl_user` (
   `user_uid` BIGINT UNIQUE AUTO_INCREMENT,
   `user_email` VARCHAR(45) NULL,
@@ -22,6 +22,7 @@ CREATE TABLE `Timeless`.`tbl_events` (
   `event_content` VARCHAR(2048) NULL,
   `event_creator` BIGINT,
   PRIMARY KEY (`events_eid`));
+*/
 
 -- Make a 'create user' procedure
 
@@ -33,25 +34,28 @@ DELIMITER $$
 USE `Timeless`$$
 CREATE PROCEDURE `spCreateUser` (
 IN p_user_email varchar(45),
-IN p_user_password varchar(45)
+IN p_user_password varchar(45),
+IN p_user_name varchar(45)
 )
 BEGIN
 
 if ( select exists (select 1 from tbl_user where user_email = p_user_email) ) THEN
 
-    select 'Username Exists !!';
+    select 'Username already exists !!';
 
 ELSE
 
 insert into tbl_user
 (
     user_email,
-    user_password
+    user_password,
+    user_name
 )
 values
 (
     p_user_email,
-    p_user_password
+    p_user_password,
+    p_user_name
 );
 
 END IF;

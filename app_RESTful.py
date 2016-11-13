@@ -70,15 +70,17 @@ class CreateUser(Resource):
             parser = reqparse.RequestParser()
             parser.add_argument('email', type=str, help='Email address to create user')
             parser.add_argument('password', type=str, help='Password to create user')
+            parser.add_argument('first_name', type=str, help='User first name')
             args = parser.parse_args()
             _userEmail = args['email']
             _userPassword = args['password']
+            _userName = args['first_name']
             
             ####DEBUG
             #return {'email': args['email'], 'password': args['password']}
 
-            if _userEmail is None or _userPassword is None:
-		return {'error': "'email' or 'password' field blank"}
+            if _userEmail is None or _userPassword is None or _userName is None:
+		return {'error': "'email','password', or 'first_name' field blank"}
 
             # Todo: Hash password and sanitize input, check for valid email address form
 
@@ -86,7 +88,7 @@ class CreateUser(Resource):
 	    # Run the mysql procedure to create a user, assuming mysql has been set up using db.sql
 	    conn = mysql.connect()
 	    cursor = conn.cursor()
-	    cursor.callproc('spCreateUser',(_userEmail,_userPassword))
+	    cursor.callproc('spCreateUser',(_userEmail,_userPassword,_userName))
 	    data = cursor.fetchall()
 
 	    # Check for success
