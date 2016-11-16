@@ -4,7 +4,7 @@ import logging # For sending debug to browser console
 import sys
 
 import subprocess
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from flaskext.mysql import MySQL
 from flask_restful import Resource, Api, reqparse #Request parsing
 
@@ -30,8 +30,7 @@ mysql.init_app(app)
 
 # Homepage
 @app.route("/")
-@app.route("/<name>")
-def home(name=None):
+def home():
     ##DEBUG info - check database login success
     if file == None:
         print >> sys.stderr, "Password NOT loaded"
@@ -39,8 +38,7 @@ def home(name=None):
         #app.logger.warning('DB login success')
         print >> sys.stderr, "DB login success"
     ##END DEBUG info
-
-    return render_template('login.html', name=name) 
+    return render_template('login.html') 
 
 # User Login
 @app.route("/Authenticate")
@@ -58,7 +56,7 @@ def Authenticate():
     cursor.execute("SELECT * from tbl_user where user_email='" + email + "' and user_password='" + password + "'")
     data = cursor.fetchone()
     if data is None:
-     return "Email or Password is wrong"
+     return "Login failed. Check email and password"
     else:
      return "Logged in successfully"
 
@@ -75,7 +73,7 @@ class CreateUser(Resource):
             _userEmail = args['email']
             _userPassword = args['password']
             _userName = args['first_name']
-            
+ 
             ####DEBUG
             #return {'email': args['email'], 'password': args['password']}
 
@@ -106,9 +104,76 @@ class CreateUser(Resource):
 
 api.add_resource(CreateUser, '/CreateUser')
 
+# Registration Page
 @app.route("/register")
 def Register():
     return render_template('register.html')
+
+
+# Notes Page
+@app.route("/notes", methods=['GET', 'POST'])
+def Notes():
+    if request.method == 'GET':
+        return render_template('notes.html')
+    else:
+        post_input = request.get_json()
+        
+        # Call functions when json 'action' reads "get" or "save"
+        if 'action' not in post_input:
+            return "No 'action' given"
+        if post_input['action'] == 'get':
+            return getNote(**post_input)
+        elif post_input['action'] == 'save':
+            return saveNote(**post_input)
+        else:
+            return "Invalid 'action'"
+
+
+        ######## Retrieve note from the database ########
+        ######## Arguments: action, note_id
+def getNote(**post_input):
+        
+        # Establish connection
+        conn = mysql.connect()
+        cursor = conn.cursor()
+
+        note_id = post_input['note_id']
+        # Check if note id given 
+        if note_id == None:
+            return "Error: getNote failed, note_id field blank"
+        try: 
+            cursor.callproc('spGetNote',(note_id,))
+            data = cursor.fetchall()
+            return jsonify(data)
+        except Exception as e:
+            return str(e)
+
+
+        ######## TODO: Save the note to the database#####
+def saveNote(post_input):
+
+        # Establish connection
+        conn = mysql.connect()
+        cursor = conn.cursor() 
+
+        note_id = post_input['note_id']
+        note_body = post_input['note_body']
+        if note_id == None or note_body == None:
+            return "Error: 'note_body' or 'note_id' empty"
+        try:
+            cursor.callproc('spSaveNote',(note_id,note_body))
+            data = cursor.fetchall()
+            return jsonify(data)
+        except Exception as e:
+            return {'error': str(e)}
+        ###########################################
+
+# User Page
+@app.route("/user/<name>")
+def User(name=None):
+    return render_template('user.html', name=name) 
+
+
 
 @app.route("/Gitupdate", methods=['GET', 'POST'])
 def Gitupdate():
