@@ -24,6 +24,7 @@ try:
         file.close()
 except IOError:
     file = None
+
 app.config['MYSQL_DATABASE_DB'] = 'Timeless'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
@@ -121,9 +122,10 @@ def Notes():
         # Call functions when json 'action' reads "get" or "save"
         if 'action' not in post_input:
             return "No 'action' given"
-        if post_input['action'] == 'get':
+        action = post_input['action']
+        if action == 'get':
             return getNote(**post_input)
-        elif post_input['action'] == 'save':
+        elif action == 'save':
             return saveNote(**post_input)
         else:
             return "Invalid 'action'"
@@ -149,8 +151,9 @@ def getNote(**post_input):
             return str(e)
 
 
-        ######## TODO: Save the note to the database#####
-def saveNote(post_input):
+        ######## Save the note to the database#####
+        ######## Arguments: action, note_id, note_body
+def saveNote(**post_input):
 
         # Establish connection
         conn = mysql.connect()
@@ -165,7 +168,7 @@ def saveNote(post_input):
             data = cursor.fetchall()
             return jsonify(data)
         except Exception as e:
-            return {'error': str(e)}
+            return str(e)
         ###########################################
 
 # User Page
