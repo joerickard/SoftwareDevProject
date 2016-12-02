@@ -15,46 +15,82 @@
  <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-    		<form role="form" action="http://timeless.dynu.com/Authenticate" method="POST">
-    			<h2>Your Notes</h2>
+    		<form role="form" action="login.html" method="POST">
+                <h1>Hey there John!</h1>
+    			<h3>Your Notes</h3>
     			<hr class="colorgraph">
-                <table class="table table-striped">
+                <table id="note-table" class="table table-striped">
                     <tr>
-                        <td>Check out this video</td>
-                        <td>Here is more details of the note</td>
+                        <td>Good JSON reference: http://www.w3schools.com/js/js_json_intro.asp</td>
+                    </tr>
+                    <tr>
+                        <td>Get Jeff to send notes next time I see him</td>
+                    </tr>
+                    <tr>
+                        <td>Best PB&J recipe: bread, peanut butter, & grape jelly</td>
                     </tr>
                 </table>
     			<div class="form-group">
-    				<input type="text" novalidate="novalidate" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+    				<input type="text" novalidate="novalidate" name="email" id="note" class="form-control input-lg" placeholder="New note" tabindex="4">
     			</div>
-                <div class=""
     			<div class="row">
-    				<div class="col-xs-12 col-sm-12 col-md-12">
-    					<div class="form-group">
-    						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
-    					</div>
-    				</div>
-    			</div>
-
-    			<hr class="colorgraph">
-    			<div class="row">
-    				<div class="col-xs-12 col-md-12"><input type="submit" value="Login" href="#" class="btn btn-success btn-block btn-lg"></div>
+    				<div class="col-xs-12 col-md-12"><span id="submit" value="Add Note" href="#" class="btn btn-success btn-block btn-lg">Add Note</span></div>
     			</div>
     		</form>
+
+            <br /><br />
+
+            <form role="form" action="http://timeless.dynu.com/" method="POST">
+                <h3>Your Events</h3>
+                <hr class="colorgraph">
+                <table class="table table-striped">
+                    <tr>
+                        <td>Coffee date w/ Sara</td>
+                        <td>@Generic Coffee shop on Thurs at 14:00</td>
+                    </tr>
+                    <tr>
+                        <td>Project Milestone Due</td>
+                        <td>Fri at 17:00</td>
+                    </tr>
+                </table>
+                <div class="form-group">
+                    <input type="text" novalidate="novalidate" name="email" id="email" class="form-control input-lg" placeholder="Event Name" tabindex="4">
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <input type="text" name="password" id="password" class="form-control input-lg" placeholder="Event Description" tabindex="5">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12"><input type="submit" value="Add Event" href="#" class="btn btn-success btn-block btn-lg"></div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 </body>
 <script>
-    $('#signinButton').click(function() {
-        var email = $('#email').val();
-        var pass = $('#password').val();
-        var url = 'http://timeless.dynu.com/Authenticate?email=' + email + '&password=' + pass;
+    $('#submit').click(function () {
+        var text = $('#note').val();
+        var html = '<tr><td>' + text + '</td></tr>';
+        setTimeout(function () {
+            $('#note-table').append(html);
+            $('#note').val('');
 
-        $.get(url, function(data) {
-            console.log(data);
-        });
+        }, 400);
     });
+    // Go over Geology homework and submit ASAP
+/*
+    var sendData = {
+        note_name:'name of note',
+        note_content:'content of note'
+    }
+    $.post('http://timeless.dynu.com/', sendData, function( data ) {
+        console.log(data);
+    });
+    */
 </script>
 </html>
