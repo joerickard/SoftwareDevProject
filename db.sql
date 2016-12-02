@@ -103,19 +103,19 @@ USE `Timeless`;
 DROP procedure IF EXISTS `spSaveNote`;
 
 DELIMITER $$
-USE `Timeless`$$
+
 -- Take in 2 arguments
 CREATE PROCEDURE `spSaveNote` (
 IN p_note_id varchar(45),
 IN p_note_body varchar(2048)
 )
 BEGIN
-
 if ( select exists (select 1 from tbl_notes where note_nid = p_note_id) ) THEN
     UPDATE tbl_notes
     SET note_content=p_note_body
-    WHERE note_nid = p_note_id;
+    WHERE note_nid=p_note_id;
 -- Send the newly changed note
+    COMMIT;
     select * FROM tbl_notes WHERE note_nid = p_note_id;
 
 ELSE
