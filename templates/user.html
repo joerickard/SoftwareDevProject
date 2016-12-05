@@ -14,158 +14,108 @@
         <!-- Put page html here -->
  <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-    		<form role="form" action="login.html" method="POST">
-                <h1>Hey there Tryon!</h1>
-    			<h3>Your Notes</h3>
-    			<hr class="colorgraph">
-                <table id="note-table" class="table table-striped">
-                    <tr>
-                     
-                    </tr>
-                </table>
-    			<div class="form-group">
-    				<input type="text" novalidate="novalidate" name="email" id="note" class="form-control input-lg" placeholder="New note" tabindex="4">
-    			</div>
-    			<div class="row">
-    				<div class="col-xs-12 col-md-12"><span id="submit" value="Add Note" href="#" class="btn btn-success btn-block btn-lg">Add Note</span></div>
-    			</div>
-    		</form>
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3" style="margin-bottom:80px;">
+            <h1>Hey there Tryon!</h1>
+			<h3>Your Notes</h3>
+			<hr class="colorgraph">
+            <table id="note-table" class="table table-striped">
+                <tbody>
+                    <!-- Notes appended here -->
+                </tbody>
+            </table>
+			<div class="form-group">
+				<input type="text" id="note-input" class="form-control input-lg" placeholder="New note" tabindex="4">
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-md-12"><span value="Add Note" href="" id="note" class="submit btn btn-success btn-block btn-lg">Add Note</span></div>
+			</div>
 
             <br /><br />
 
-            <form role="form" action="http://timeless.dynu.com/" method="POST">
-                <h3>Your Events</h3>
-                <hr class="colorgraph">
-                <table class="table table-striped">
-                    <tr>
-              
-                    </tr>
-                </table>
-                <div class="form-group">
-                    <input type="text" novalidate="novalidate" name="email" id="email" class="form-control input-lg" placeholder="Event Name" tabindex="4">
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <input type="text" name="password" id="password" class="form-control input-lg" placeholder="Event Description" tabindex="5">
-                        </div>
+            <h3>Your Events</h3>
+            <hr class="colorgraph">
+            <table id="event-table" class="table table-striped">
+                <tbody>
+                    <!-- Events appended here -->
+                </tbody>
+            </table>
+            <div class="form-group">
+                <input type="text" id="event-name" class="form-control input-lg" placeholder="Event Name" tabindex="4">
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <input type="text" id="event-description" class="form-control input-lg" placeholder="Event Description" tabindex="5">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12 col-md-12"><input type="submit" value="Add Event" href="#" class="btn btn-success btn-block btn-lg"></div>
-                </div>
-            </form>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12"><input id="submit-event" type="submit" value="Add Event" href="#" class="btn btn-success btn-block btn-lg"></div>
+            </div>
+
+            <br /><br />
+
+            <h3>Your Assignments</h3>
+            <hr class="colorgraph">
+            <table id="assignment-table" class="table table-striped">
+                <tbody>
+                    <!-- assignments appended here -->
+                </tbody>
+            </table>
+			<div class="form-group">
+				<input type="text" id="assignment-input" class="form-control input-lg" placeholder="New Assignment" tabindex="4">
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-md-12"><span href="" id="assignment" class="submit btn btn-success btn-block btn-lg">Add Assignment</span></div>
+			</div>
+
+            <br /><br />
+
+            <h3>Important</h3>
+            <hr class="colorgraph">
+            <table id="important-table" class="table table-striped">
+                <tbody>
+                    <!-- assignments appended here -->
+                </tbody>
+            </table>
+            <div class="form-group">
+                <input type="text" id="important-input" class="form-control input-lg" placeholder="New Assignment" tabindex="4">
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12"><span href="" id="important" class="submit btn btn-success btn-block btn-lg">Add Assignment</span></div>
+            </div>
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-<form role="form" action="http://timeless.dynu.com/" method="POST">
-                <h3>Your Assignments</h3>
-                <hr class="colorgraph">
-                <table class="table table-striped">
-                    <tr>
-              
-                    </tr>
-                </table>
-                <div class="form-group">
-                    <input type="text" novalidate="novalidate" name="email" id="email" class="form-control input-lg" placeholder="Assingment Name" tabindex="4">
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <input type="text" name="password" id="password" class="form-control input-lg" placeholder="Assignment Description" tabindex="5">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-md-12"><input type="submit" value="Add Event" href="#" class="btn btn-success btn-block btn-lg"></div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-<form role="form" action="http://timeless.dynu.com/" method="POST">
-                <h3>Your ToDo List</h3>
-                <hr class="colorgraph">
-                <table class="table table-striped">
-                    <tr>
-              
-                    </tr>
-                </table>
-                
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <input type="text" name="password" id="password" class="form-control input-lg" placeholder="Description" tabindex="5">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-md-12"><input type="submit" value="Add Event" href="#" class="btn btn-success btn-block btn-lg"></div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-<form role="form" action="http://timeless.dynu.com/" method="POST">
-                <h3>Important</h3>
-                <hr class="colorgraph">
-                <table class="table table-striped">
-                    <tr>
-              
-                    </tr>
-                </table>
-                <div class="form-group">
-                    <input type="text" novalidate="novalidate" name="email" id="email" class="form-control input-lg" placeholder="Super Important Event Description" tabindex="4">
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-md-12"><input type="submit" value="Add Event" href="#" class="btn btn-success btn-block btn-lg"></div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-
-
 
 </body>
 <script>
-    $('#submit').click(function () {
-        var text = $('#note').val();
+    //-- For sections with one text input --//
+    // Add the class -> 'submit' to submit button class list and add id="<section>"
+    // Give respective table tag id="<section>-table"
+    // Give respective text input id="<section>-ipnut"
+    $('.submit').click(function() {
+        var section = $(this).attr('id'); // grabbing id of submit button
+        var text = $('#'+section+'-input').val(); // grabbing text in text box of respective section
         var html = '<tr><td>' + text + '</td></tr>';
-        setTimeout(function () {
-            $('#note-table').append(html);
-            $('#note').val('');
 
+        // Delay from pressing the add button and updating DOM to make it look
+        // like we're interacting with backend
+        setTimeout(function() {
+            $('#'+section+'-table').append(html); // appending to new row to table
+            $('#'+section+'-input').val(''); // clearing New Note text box
         }, 400);
     });
-    // Go over Geology homework and submit ASAP
-/*
-    var sendData = {
-        note_name:'name of note',
-        note_content:'content of note'
-    }
-    $.post('http://timeless.dynu.com/', sendData, function( data ) {
-        console.log(data);
+
+    //-- Events Seciton --//
+    // There's two input fields so we can't use the general solution above
+    $('#submit-event').click(function() {
+        var html = '<tr><td>' + $('#event-name').val() + '</td><td>' + $('#event-description').val() + '</td></tr>';
+        setTimeout(function() {
+            $('#event-table').append(html);
+            $('#event-name').val('');
+            $('#event-description').val('');
+        }, 400);
     });
-    */
 </script>
 </html>
