@@ -127,6 +127,8 @@ def Notes():
             return getNote(**post_input)
         elif action == 'save':
             return saveNote(**post_input)
+        elif action == 'new':
+            return newNote(**post_input)
         else:
             return "Invalid 'action'"
 
@@ -165,6 +167,22 @@ def saveNote(**post_input):
             return "Error: 'note_body' or 'note_id' empty"
         try:
             cursor.callproc('spSaveNote',(note_id,note_body))
+            data = cursor.fetchall()
+            return jsonify(data)
+        except Exception as e:
+            return str(e)
+        ###########################################
+
+        ######## Make a new note #####
+        ######## Arguments: action, note_body
+def newNote(**post_input):
+
+        # Establish connection
+        conn = mysql.connect()
+        cursor = conn.cursor() 
+
+        try:
+            cursor.callproc('spNewNote',())
             data = cursor.fetchall()
             return jsonify(data)
         except Exception as e:

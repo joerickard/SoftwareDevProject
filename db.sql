@@ -96,7 +96,7 @@ DELIMITER ;
 
 
 
--- TODO: Make a 'save note' procedure
+-- 'save note' procedure
 
 USE `Timeless`;
 
@@ -132,19 +132,30 @@ DELIMITER ;
 -- End 'save note' procedure
 
 
+
+
+
 -- Begin 'create note' procedure
 
--- blah blah
 
-/*
-insert into tbl_notes
-(
-    note_content
+USE `Timeless`;
+
+DROP procedure IF EXISTS `spNewNote`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `spNewNote` (
+
 )
-values
-(
-    p_note_body
-);
+BEGIN
+    INSERT INTO tbl_notes (note_name)
+    VALUES ('New note');
+    COMMIT;
+    SET @id := (SELECT note_nid FROM tbl_notes ORDER BY note_nid DESC LIMIT 1);
+    SELECT @id;
 
-*/
+END$$
+
+DELIMITER ;
+
 -- End 'create note' procedure
