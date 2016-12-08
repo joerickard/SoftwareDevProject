@@ -41,6 +41,7 @@ We will use Agile as our development methodology.  We will have many small rele
 ## Collaboration Tool:
 - Slack
 - Google docs
+- Trello
 
 ## Local Install Instructions:
 - I (Joe) set up a basic frameork with Python3 and Flask. 
