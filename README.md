@@ -5,6 +5,7 @@ TimeLess - Our project is always online for users, users no longer need to remem
 
 ## Members:
 - Kenny Ellis
+- Ryan Rouleau
 - Zanqing Feng
 - Cade Haley
 - Chi Liu
